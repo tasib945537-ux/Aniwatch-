@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #08080d;
+  --bg-secondary: #101017;
+  --card: #14141d;
+  --card-hover: #1c1c28;
+  --purple: #8b5cf6;
+  --purple-light: #a78bfa;
+  --yellow: #facc15;
+  --text: #fff;
+  --muted: #a4a4b5;
+  --border: rgba(255,255,255,.08);
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 75% -10%, rgba(139,92,246,.14), transparent 34rem),
+    var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+button, input, select { font: inherit; }
+button, a { cursor: pointer; }
+::selection { background: rgba(139,92,246,.35); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #363642; border-radius: 999px; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+.glass {
+  background: rgba(20,20,29,.72);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg,#111118 25%,#1d1d28 50%,#111118 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

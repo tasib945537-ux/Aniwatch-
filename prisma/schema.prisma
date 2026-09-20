@@ -1,0 +1,7 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+model Anime { id Int @id @default(autoincrement()); anilistId Int? @unique; malId Int? @unique; title String; cover String?; banner String?; description String?; genres Json?; year Int?; season String?; status String?; episodes Int?; createdAt DateTime @default(now()); updatedAt DateTime @updatedAt; episodesList Episode[] }
+model Episode { id Int @id @default(autoincrement()); animeId Int; number Int; title String?; anime Anime @relation(fields:[animeId],references:[id],onDelete:Cascade); sources EpisodeSource[]; @@unique([animeId,number]) }
+model EpisodeSource { id Int @id @default(autoincrement()); episodeId Int; name String; url String; type String; quality String?; isM3U8 Boolean @default(false); episode Episode @relation(fields:[episodeId],references:[id],onDelete:Cascade) }
+model WatchHistory { id Int @id @default(autoincrement()); userId String; animeId Int; episode Int; progress Int @default(0); updatedAt DateTime @updatedAt; @@unique([userId,animeId,episode]) }
+model Watchlist { id Int @id @default(autoincrement()); userId String; animeId Int; createdAt DateTime @default(now()); @@unique([userId,animeId]) }
